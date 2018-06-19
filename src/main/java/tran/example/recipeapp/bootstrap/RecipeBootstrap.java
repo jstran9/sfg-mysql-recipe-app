@@ -10,6 +10,7 @@ import tran.example.recipeapp.repositories.CategoryRepository;
 import tran.example.recipeapp.repositories.RecipeRepository;
 import tran.example.recipeapp.repositories.UnitOfMeasureRepository;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional
+    /**
+     * for the transactional annotation.
+     * direct the spring framework to create a transaction around this method..
+     * this should prevent the lazy fetching when accessing the repositories.
+     */
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
     }
