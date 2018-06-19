@@ -115,6 +115,14 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+        // the below sets the recipe and we build the association between the recipe and the note.
+        notes.setRecipe(this);
+    }
+
+    public Recipe addIngredient(Ingredient ingredient) {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
     }
 
     public Difficulty getDifficulty() {
