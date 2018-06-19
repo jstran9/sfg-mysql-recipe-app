@@ -1,18 +1,13 @@
 package tran.example.recipeapp.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import tran.example.recipeapp.domain.Category;
-import tran.example.recipeapp.domain.UnitOfMeasure;
-import tran.example.recipeapp.repositories.CategoryRepository;
-import tran.example.recipeapp.repositories.UnitOfMeasureRepository;
 import tran.example.recipeapp.services.RecipeService;
 
-import java.util.Optional;
-
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -24,6 +19,7 @@ public class IndexController {
 //        this.unitOfMeasureRepository = unitOfMeasureRepository;
 //    }
 
+    private final String INDEX_DEBUG_STATEMENT = "loading the index page!";
     private RecipeService recipeService;
 
     @Autowired
@@ -34,6 +30,7 @@ public class IndexController {
     @RequestMapping({"", "/", "index"})
     public String getIndexPage(Model model) {
 
+        log.debug(INDEX_DEBUG_STATEMENT);
 //        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
 //        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 //        System.out.println("Category id is " + categoryOptional.get().getId());
