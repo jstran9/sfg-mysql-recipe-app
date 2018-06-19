@@ -12,7 +12,10 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    // private UnitOfMeasure uom;
+    // one to one and always get the unit of measure when we load this individual ingredient.
+    // this is the default fetch but we want to specify it to be clear that we always want to grab a UoM.
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uom;
 
     // no cascade b/c we don't want to cascade upward to delete the recipe.
     // we want to freely delete ingredients assigned to the recipe.
@@ -49,5 +52,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }
