@@ -2,11 +2,13 @@ package tran.example.recipeapp.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Ingredient {
 
@@ -25,15 +27,6 @@ public class Ingredient {
     // we want to freely delete ingredients assigned to the recipe.
     @ManyToOne
     private Recipe recipe;
-
-    @java.beans.ConstructorProperties({"id", "description", "amount", "uom", "recipe"})
-    public Ingredient(Long id, String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
-        this.id = id;
-        this.description = description;
-        this.amount = amount;
-        this.uom = uom;
-        this.recipe = recipe;
-    }
 
     public Recipe getRecipe() {
         return recipe;
