@@ -3,12 +3,14 @@ package tran.example.recipeapp.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(exclude = "recipe")
+@NoArgsConstructor
 @Entity
 public class Ingredient {
 
