@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import tran.example.recipeapp.domain.Recipe;
 import tran.example.recipeapp.repositories.RecipeRepository;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -21,9 +23,9 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public List<Recipe> getRecipes() {
+    public Set<Recipe> getRecipes() {
         log.debug("in the getRecipes method from " + RecipeServiceImpl.class);
-        List<Recipe> recipes = new LinkedList<>();
+        Set<Recipe> recipes = new HashSet<>();
         recipeRepository.findAll().forEach(recipes::add);
         return recipes;
     }
