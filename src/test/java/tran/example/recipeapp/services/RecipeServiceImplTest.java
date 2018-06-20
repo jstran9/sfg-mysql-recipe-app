@@ -7,14 +7,11 @@ import org.mockito.MockitoAnnotations;
 import tran.example.recipeapp.domain.Recipe;
 import tran.example.recipeapp.repositories.RecipeRepository;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class RecipeServiceImplTest {
 
@@ -35,13 +32,13 @@ public class RecipeServiceImplTest {
         Recipe recipe = new Recipe();
 
         // given
-        List<Recipe> recipeData = new LinkedList<>();
+        Set<Recipe> recipeData = new HashSet<>();
         recipeData.add(recipe);
 
         // when
         when(recipeService.getRecipes()).thenReturn(recipeData);
 
-        List<Recipe> recipeDataTwo = recipeService.getRecipes();
+        Set<Recipe> recipeDataTwo = recipeService.getRecipes();
 
         // then
         assertEquals(recipeData.size(), recipeDataTwo.size());
