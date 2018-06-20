@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import tran.example.recipeapp.commands.RecipeCommand;
 import tran.example.recipeapp.converters.RecipeCommandToRecipe;
 import tran.example.recipeapp.converters.RecipeToRecipeCommand;
 import tran.example.recipeapp.domain.Recipe;
@@ -68,6 +69,18 @@ public class RecipeServiceImplTest {
 
         assertNotNull("Null recipe returned", returnedRecipe);
         verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, never()).findAll();
+    }
+
+    @Test
+    public void findCommandById() throws Exception {
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        when(recipeToRecipeCommand.convert(any())).thenReturn(recipeCommand);
+
+        assertNotNull("Null recipe command returned", recipeCommand);
+        verify(recipeRepository, times(0)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
     }
 }
