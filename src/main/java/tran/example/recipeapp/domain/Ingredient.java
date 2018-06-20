@@ -1,6 +1,5 @@
 package tran.example.recipeapp.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,6 @@ import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(exclude = "recipe")
-@NoArgsConstructor
 @Entity
 public class Ingredient {
 
@@ -37,6 +35,8 @@ public class Ingredient {
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
+
+    public Ingredient() {}
 
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
         this.description = description;
