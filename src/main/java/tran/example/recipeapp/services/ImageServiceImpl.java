@@ -32,10 +32,10 @@ public class ImageServiceImpl implements ImageService {
                  * note: Hibernate recommends to use a Wrapper type (not the primitive) although using byte[] can work
                  * if the file is null this would cause issues.
                   */
+                int fileByteIndex = 0;
                 Byte[] copiedFileContents = new Byte[file.getBytes().length];
-                byte[] fileContents = file.getBytes();
-                for(int fileByteIndex = 0; fileByteIndex < copiedFileContents.length; fileByteIndex++) {
-                    copiedFileContents[fileByteIndex] = fileContents[fileByteIndex];
+                for(byte fileContent : file.getBytes()) {
+                    copiedFileContents[fileByteIndex++] = fileContent;
                 }
                 recipe.setImage(copiedFileContents);
                 recipeRepository.save(recipe);
