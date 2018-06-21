@@ -85,7 +85,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void testDeleteById() throws Exception {
+    public void deleteById() throws Exception {
         // given
         Long idToDelete = 2L;
         // when

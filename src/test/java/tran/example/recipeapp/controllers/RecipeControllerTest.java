@@ -76,7 +76,7 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void testGetUpdateView() throws Exception {
+    public void updateRecipeById() throws Exception {
         RecipeCommand recipeCommand = new RecipeCommand();
         recipeCommand.setId(2L);
 
@@ -89,7 +89,7 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void testDeleteAction() throws Exception {
+    public void deleteRecipeById() throws Exception {
         mockMvc.perform(get("/recipe/1/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"));
