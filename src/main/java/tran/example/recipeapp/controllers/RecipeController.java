@@ -5,18 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import tran.example.recipeapp.commands.RecipeCommand;
 import tran.example.recipeapp.exceptions.NotFoundException;
 import tran.example.recipeapp.services.RecipeService;
 
+import javax.validation.Valid;
+
 @Slf4j
 @Controller
 @RequestMapping({RecipeController.RECIPE_BASE_URL})
 public class RecipeController {
 
-    public static final String RECIPE_BASE_URL = "/recipe";
+    public static final String RECIPE_BASE_URL = "recipe";
+    public static final String RECIPE_FORM = "/recipeform";
     RecipeService recipeService;
 
     @Autowired
@@ -28,25 +32,30 @@ public class RecipeController {
     public String getRecipeById(@PathVariable String id, Model model) {
         model.addAttribute("recipe", recipeService.findRecipeById(Long.valueOf(id)));
 
-        return "recipe/show";
+        return RECIPE_BASE_URL + "/show";
     }
 
     @GetMapping("/new")
     public String createRecipe(Model model) {
         model.addAttribute("recipe", new RecipeCommand());
-        return "recipe/recipeform";
+        return RECIPE_BASE_URL + RECIPE_FORM;
     }
 
     @PostMapping
-    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand) {
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand recipeCommand,
+                               BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(objectError -> log.debug(objectError.toString()));
+            return RECIPE_BASE_URL + RECIPE_FORM;
+        }
         RecipeCommand savedRecipeCommand = recipeService.saveRecipeCommand(recipeCommand);
-        return "redirect:" + RECIPE_BASE_URL + "/" + savedRecipeCommand.getId() + "/show";
+        return "redirect:" + "/" + RECIPE_BASE_URL + "/" + savedRecipeCommand.getId() + "/show";
     }
 
     @GetMapping("/{id}/update")
     public String updateRecipeById(@PathVariable String id, Model model) {
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
-        return "recipe/recipeform";
+        return RECIPE_BASE_URL + RECIPE_FORM;
     }
 
     @GetMapping("/{id}/delete")
