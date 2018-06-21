@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import tran.example.recipeapp.commands.RecipeCommand;
-import tran.example.recipeapp.domain.Recipe;
 import tran.example.recipeapp.services.ImageService;
 import tran.example.recipeapp.services.RecipeService;
 
@@ -18,9 +17,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by jt on 7/3/17.
- */
 @Controller
 public class ImageController {
 
