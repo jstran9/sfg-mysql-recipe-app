@@ -62,8 +62,7 @@ public class IngredientController {
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
     }
 
-    @GetMapping
-    @RequestMapping("recipe/{recipeId}/ingredient/new")
+    @GetMapping(RecipeController.RECIPE_BASE_URL + "/{recipeId}/ingredient/new")
     public String newIngredient(@PathVariable String recipeId, Model model){
 
         //make sure we have a good id value
@@ -83,8 +82,7 @@ public class IngredientController {
         return "recipe/ingredient/ingredientform";
     }
 
-    @GetMapping
-    @RequestMapping("recipe/{recipeId}/ingredient/{ingredientId}/delete")
+    @GetMapping(RecipeController.RECIPE_BASE_URL + "/{recipeId}/ingredient/{ingredientId}/delete")
     public String deleteIngredientByRecipeIdAndIngredientId(@PathVariable String recipeId, @PathVariable String ingredientId) {
         log.debug("deleting ingredient with id: " + ingredientId);
         ingredientService.deleteByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(ingredientId));
