@@ -8,6 +8,7 @@ import tran.example.recipeapp.commands.RecipeCommand;
 import tran.example.recipeapp.converters.RecipeCommandToRecipe;
 import tran.example.recipeapp.converters.RecipeToRecipeCommand;
 import tran.example.recipeapp.domain.Recipe;
+import tran.example.recipeapp.exceptions.NotFoundException;
 import tran.example.recipeapp.repositories.RecipeRepository;
 
 import java.util.*;
@@ -40,7 +41,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe findRecipeById(Long id) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         if(!recipeOptional.isPresent()) {
-            throw new RuntimeException("recipe can't be found");
+            throw new NotFoundException("recipe can't be found");
         }
         return recipeOptional.get();
     }

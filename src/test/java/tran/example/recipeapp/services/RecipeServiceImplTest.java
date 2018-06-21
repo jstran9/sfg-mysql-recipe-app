@@ -8,6 +8,7 @@ import tran.example.recipeapp.commands.RecipeCommand;
 import tran.example.recipeapp.converters.RecipeCommandToRecipe;
 import tran.example.recipeapp.converters.RecipeToRecipeCommand;
 import tran.example.recipeapp.domain.Recipe;
+import tran.example.recipeapp.exceptions.NotFoundException;
 import tran.example.recipeapp.repositories.RecipeRepository;
 
 import java.util.HashSet;
@@ -92,5 +93,14 @@ public class RecipeServiceImplTest {
         recipeService.deleteById(idToDelete);
         // then
         verify(recipeRepository, times(1)).deleteById(anyLong());
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdNotFound() throws Exception {
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findRecipeById(1L);
     }
 }
