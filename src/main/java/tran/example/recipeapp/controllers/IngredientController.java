@@ -88,6 +88,6 @@ public class IngredientController {
     public String deleteIngredientByRecipeIdAndIngredientId(@PathVariable String recipeId, @PathVariable String ingredientId) {
         log.debug("deleting ingredient with id: " + ingredientId);
         ingredientService.deleteByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(ingredientId));
-        return "redirect:/" + recipeId + "/ingredients";
+        return "redirect:/recipe/" + recipeId + "/ingredients";
     }
 }
