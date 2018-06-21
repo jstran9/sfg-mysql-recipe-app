@@ -103,4 +103,9 @@ public class RecipeServiceImplTest {
 
         Recipe recipeReturned = recipeService.findRecipeById(1L);
     }
+
+    @Test(expected = NumberFormatException.class)
+    public void testGetRecipeWithInvalidArgumentException() throws Exception {
+        recipeService.findRecipeById(Long.valueOf("asdf"));
+    }
 }
