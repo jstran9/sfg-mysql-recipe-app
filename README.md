@@ -3,3 +3,5 @@ This repository follows section 12 of the course.
 
 This is a continuation from my other repository that covers [section 11](https://github.com/ttran9/sfg-crud-ops-and-validation)
 of the course.
+
+Merging the changes from all the other branches back on to the master branch.
