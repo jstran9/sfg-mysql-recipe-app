@@ -1,7 +1,3 @@
 This is a sample recipe app from John Thompson's [Course](https://www.udemy.com/spring-framework-5-beginner-to-guru/).
-This repository follows section 12 of the course. 
+This repository follows section 16 of the course which will use a MySQL database instead of an in-memory h2 database.. 
 
-This is a continuation from my other repository that covers [section 11](https://github.com/ttran9/sfg-crud-ops-and-validation)
-of the course.
-
-Merging the changes from all the other branches back on to the master branch.
