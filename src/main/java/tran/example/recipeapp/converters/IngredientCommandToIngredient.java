@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import tran.example.recipeapp.commands.IngredientCommand;
 import tran.example.recipeapp.domain.Ingredient;
+import tran.example.recipeapp.domain.Recipe;
 
 @Component
 public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
@@ -27,6 +28,13 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
         ingredient.setAmount(source.getAmount());
         ingredient.setDescription(source.getDescription());
         ingredient.setUom(uomConverter.convert(source.getUom()));
+
+        if(source.getRecipeId() != null){
+            Recipe recipe = new Recipe();
+            recipe.setId(source.getRecipeId());
+            ingredient.setRecipe(recipe);
+            recipe.addIngredient(ingredient);
+        }
         return ingredient;
     }
 }
