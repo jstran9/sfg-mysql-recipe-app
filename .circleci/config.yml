@@ -43,7 +43,7 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
 
-      # hook to send to codecov pings to codecov and looks for the test coverage by cobertura.
+      # hook to send to codecov.
       - run:
           name: Send to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
